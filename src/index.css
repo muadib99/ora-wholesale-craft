@@ -2,57 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* ORA Coffee Design System - Earth tones with premium coffee aesthetics */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* ORA Coffee Brand Colors */
+    --coffee-dark: 22 42% 36%;        /* #7B4F3B - Dark brown accent */
+    --coffee-light: 39 70% 94%;       /* #F5EDE6 - Light beige highlights */
+    --coffee-gold: 42 50% 58%;        /* #CBA65B - Gold accent for CTAs */
+    --coffee-neutral: 0 0% 20%;       /* #333333 - Neutral text */
+    --coffee-white: 0 0% 100%;        /* #FFFFFF - White text on dark */
+    
+    /* Semantic Design Tokens */
+    --background: var(--coffee-white);
+    --foreground: var(--coffee-neutral);
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: var(--coffee-white);
+    --card-foreground: var(--coffee-neutral);
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: var(--coffee-white);
+    --popover-foreground: var(--coffee-neutral);
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: var(--coffee-dark);
+    --primary-foreground: var(--coffee-white);
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: var(--coffee-light);
+    --secondary-foreground: var(--coffee-neutral);
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: var(--coffee-light);
+    --muted-foreground: 22 15% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: var(--coffee-gold);
+    --accent-foreground: var(--coffee-white);
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: var(--coffee-white);
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 39 30% 85%;
+    --input: 39 30% 90%;
+    --ring: var(--coffee-gold);
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Hero gradient for coffee aesthetics */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--coffee-dark)) 0%, hsl(22 35% 25%) 100%);
+    --gradient-overlay: linear-gradient(180deg, transparent 0%, hsl(var(--coffee-dark) / 0.4) 100%);
+    
+    /* Elegant shadows with coffee theme */
+    --shadow-elegant: 0 10px 30px -10px hsl(var(--coffee-dark) / 0.2);
+    --shadow-card: 0 4px 20px -4px hsl(var(--coffee-dark) / 0.1);
+    
+    /* Smooth animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.2s ease-out;
   }
 
   .dark {
@@ -101,5 +103,45 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+  }
+}
+
+@layer components {
+  /* Hero button variants */
+  .btn-hero-primary {
+    @apply bg-accent text-accent-foreground px-8 py-4 rounded-lg font-medium text-lg 
+           shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300
+           hover:bg-accent/90;
+  }
+  
+  .btn-hero-secondary {
+    @apply border-2 border-white text-white px-8 py-4 rounded-lg font-medium text-lg
+           hover:bg-white hover:text-primary transition-all duration-300;
+  }
+  
+  /* Form field styles */
+  .form-field {
+    @apply w-full px-4 py-3 border border-input rounded-lg bg-background text-foreground
+           focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent
+           transition-all duration-200;
+  }
+  
+  /* Card hover effects */
+  .card-hover {
+    @apply transform transition-all duration-300 hover:scale-105 hover:shadow-xl;
+  }
+  
+  /* Navigation link animation */
+  .nav-link {
+    @apply relative after:content-[''] after:absolute after:w-full after:scale-x-0 
+           after:h-0.5 after:bottom-0 after:left-0 after:bg-accent 
+           after:origin-bottom-right after:transition-transform after:duration-300 
+           hover:after:scale-x-100 hover:after:origin-bottom-left;
   }
 }
